@@ -44,5 +44,10 @@ public class AddressBook implements AddressBookInterface {
         addressBookRepository.searchPerson();
     }
 
+    @Override
+    public void sortPerson() {
+        addressBookRepository.sortPerson();
+    }
+
 
 }

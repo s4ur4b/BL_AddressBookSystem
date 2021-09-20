@@ -3,10 +3,7 @@ package Repository;
 import AddressBookModel.PersonInfo;
 import AddressBookService.AddressBookInterface;
 
-import java.util.ArrayList;
-import java.util.Hashtable;
-import java.util.List;
-import java.util.Scanner;
+import java.util.*;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.Collectors;
 
@@ -236,6 +233,14 @@ public class AddressBookRepository implements AddressBookInterface {
         }
         System.out.println("\nViewing Persons by City or State\n" +searchList);
         System.out.println("\nNumber of contact persons i.e. count by City or State is : " +count +"\n");
+    }
+
+    @Override
+    public void sortPerson() {
+        personInfoDict.keySet().forEach(entry -> {
+            List<PersonInfo> collect = personInfoDict.get(entry).stream().sorted(Comparator.comparing(p -> p.getFirst_name())).collect(Collectors.toList());
+            System.out.println(collect);
+        });
     }
 
 }
