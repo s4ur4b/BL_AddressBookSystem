@@ -182,7 +182,7 @@ public class AddressBookRepository implements AddressBookInterface {
             System.out.println("\nNo such Address Book found.\n");
     }
 
-    //Method to Search Person by City or State
+    //Method to Search Person by City or State and Count by City or State
     @Override
     public void searchPerson() {
         Hashtable<String,Hashtable<String,ArrayList<String>>> searchList = new Hashtable<>();
