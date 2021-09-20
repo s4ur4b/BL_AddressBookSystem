@@ -42,6 +42,7 @@ public class AddressBookRepository implements AddressBookInterface {
         System.out.print("Enter the Email: ");
         personInfo.setEmail(input.next().toString());
 
+        //To Ensure there is no Duplicate contact in the Address Book
         if (personInfoDict.containsKey(addressBookName)) {
             ArrayList<PersonInfo> value = personInfoDict.get(addressBookName);
             for (int j = 0; j < value.size(); j++) {
