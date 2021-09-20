@@ -12,4 +12,5 @@ public interface AddressBookInterface {
     abstract boolean findContact(String addressBookName, Hashtable<String, ArrayList<PersonInfo>> personInfoDict);
     abstract void editContactDetails(String addressBookName, Hashtable<String, ArrayList<PersonInfo>> personInfoDict);
     abstract void deleteContact(String deletedName, Hashtable<String, ArrayList<PersonInfo>> personInfoDict);
+    abstract void searchPerson();
 }

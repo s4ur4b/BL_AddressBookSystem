@@ -46,7 +46,15 @@ public class AddressBookSystem {
                     System.out.println("\n" + "Display all contacts in the Address Book");
                     add_Book.displayCompanyContacts(personInfoDict);
                     break;
-
+                case SEARCH_CITY:
+                    System.out.println("\n" + "Search Address Book based on City");
+                    add_Book.searchPerson();
+                    flag = true;
+                    break;
+                case QUIT:
+                    flag = false;
+                    System.out.println("\n" + "Thank you for referring the address book.");
+                    break;
 
             }
         }

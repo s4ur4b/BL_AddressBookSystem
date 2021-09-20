@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.Hashtable;
 import java.util.List;
 import java.util.Scanner;
+import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.Collectors;
 
 public class AddressBookRepository implements AddressBookInterface {
@@ -179,6 +180,61 @@ public class AddressBookRepository implements AddressBookInterface {
                 System.out.println("\nNo such First Name found in the Address Book.\n");
         } else
             System.out.println("\nNo such Address Book found.\n");
+    }
+
+    @Override
+    public void searchPerson() {
+        Hashtable<String,Hashtable<String,ArrayList<String>>> searchList = new Hashtable<>();
+
+        AtomicInteger count = new AtomicInteger();
+
+        System.out.println("Press 1 to search person by city");
+        System.out.println("Press 2 to search person by state");
+        int choice = input.nextInt();
+
+        switch (choice){
+            case 1:
+                System.out.print("\nEnter the city name to search: ");
+                String cityName = input.next();
+
+                personInfoDict.keySet().forEach(entry -> {
+                    ArrayList<PersonInfo> value = personInfoDict.get(entry);
+                    List<String> city = value.stream().map(citySearch -> citySearch.getCity()).collect(Collectors.toList());
+                    Hashtable<String,ArrayList<String>> person = new Hashtable<>();
+                    ArrayList<String> firstName = new ArrayList<>();
+                    for (int k = 0; k < city.size(); k++){
+                        if (city.get(k).equals(cityName)){
+                            firstName.add(value.get(k).getFirst_name());
+                            count.getAndIncrement();
+                        }
+                        person.put(cityName,firstName);
+                    }
+                    searchList.put(entry,person);
+                });
+                break;
+
+            case 2:
+                System.out.print("\nEnter the state name to search: ");
+                String stateName = input.next();
+
+                personInfoDict.keySet().forEach(entry -> {
+                    ArrayList<PersonInfo> value = personInfoDict.get(entry);
+                    List<String> state = value.stream().map(searchState -> searchState.getState()).collect(Collectors.toList());
+                    Hashtable<String , ArrayList<String>> person = new Hashtable<>();
+                    ArrayList<String> firstName = new ArrayList<>();
+                    for (int k = 0; k < state.size(); k++){
+                        if (state.get(k).equals(stateName)){
+                            firstName.add(value.get(k).getFirst_name());
+                            count.getAndIncrement();
+                        }
+                        person.put(stateName, firstName);
+                    }
+                    searchList.put(entry, person);
+                });
+                break;
+        }
+        System.out.println("\nViewing Persons by City or State\n" +searchList);
+        System.out.println("\nNumber of contact persons i.e. count by City or State is : " +count +"\n");
     }
 
 }

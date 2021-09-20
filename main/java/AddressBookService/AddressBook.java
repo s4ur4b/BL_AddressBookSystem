@@ -39,5 +39,10 @@ public class AddressBook implements AddressBookInterface {
         addressBookRepository.deleteContact(deletedName,personInfoDict);
     }
 
+    @Override
+    public void searchPerson() {
+        addressBookRepository.searchPerson();
+    }
+
 
 }
