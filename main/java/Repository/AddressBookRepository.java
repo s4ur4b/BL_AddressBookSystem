@@ -79,6 +79,7 @@ public class AddressBookRepository implements AddressBookInterface {
 
     }
 
+    //Checks weather Address book exists in the HashTable and then initiates The Edit contact method
     @Override
     public void updateContact(String addressBookName, Hashtable<String, ArrayList<PersonInfo>> personInfoDict) {
         boolean flag = findContact(addressBookName, personInfoDict);
@@ -89,6 +90,7 @@ public class AddressBookRepository implements AddressBookInterface {
         }
     }
 
+    //Checks weather Address book exists in the HashTable
     @Override
     public boolean findContact(String addressBookName, Hashtable<String, ArrayList<PersonInfo>> personInfoDict) {
         for (int i = 0; i < personInfoDict.size(); i++) {
