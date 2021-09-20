@@ -59,22 +59,21 @@ public class AddressBookRepository implements AddressBookInterface {
                 value.add(personInfo);
                 personInfoDict.put(addressBookName, value);
             }
-        }
-        else {
+        } else {
             pList = new ArrayList<>();
             pList.add(personInfo);
             personInfoDict.put(addressBookName, pList);
         }
 
-                return personInfoDict;
+        return personInfoDict;
     }
 
     //Display all contacts in the AddressBook
     @Override
     public void displayCompanyContacts(Hashtable<String, ArrayList<PersonInfo>> personInfoDict) {
-            personInfoDict.keySet().forEach(entry -> {
-                System.out.println(entry+ "-->"+personInfoDict.get(entry)+"\n");
-            });
+        personInfoDict.keySet().forEach(entry -> {
+            System.out.println(entry + "-->" + personInfoDict.get(entry) + "\n");
+        });
 
     }
 
@@ -104,7 +103,7 @@ public class AddressBookRepository implements AddressBookInterface {
 
         ArrayList<PersonInfo> value = personInfoDict.get(addressBookName);
         for (int j = 0; j < value.size(); j++) {
-            if(value.get(j).getFirst_name().equals(fName)) {
+            if (value.get(j).getFirst_name().equals(fName)) {
                 System.out.println("Choose your edit option: ");
                 System.out.println("1. Last Name");
                 System.out.println("2. Address");
@@ -147,11 +146,35 @@ public class AddressBookRepository implements AddressBookInterface {
                 }
                 System.out.println("\nUpdated successfully!\n");
                 break;
-            }
-            else
+            } else
                 System.out.println("\nNo First Name Found!\n");
         }
     }
 
+    @Override
+    public void deleteContact(String deleteAddressBookName, Hashtable<String, ArrayList<PersonInfo>> personInfoDict) {
+        boolean found = false;
+        boolean flag = findContact(deleteAddressBookName, personInfoDict);
+
+        if (flag == true) {
+            System.out.print("\nEnter the first name you want to delete : ");
+            String fName = input.next();
+
+            ArrayList<PersonInfo> value = personInfoDict.get(deleteAddressBookName);
+            for (int j = 0; j < value.size(); j++) {
+                if (value.get(j).getFirst_name().equals(fName)) {
+                    value.remove(j);
+                    found = true;
+                    break;
+                }
+            }
+            if (found == true) {
+                System.out.println("\nContact in Address Book Deleted.\n");
+            } else
+                System.out.println("\nNo such First Name found in the Address Book.\n");
+        } else
+            System.out.println("\nNo such Address Book found.\n");
+    }
 
 }
+

@@ -33,11 +33,14 @@ public class AddressBookSystem {
                     break;
                 case EDIT:
                     System.out.print("\n" + "Enter the name of the Address Book that you want to replace: ");
-                    String companyName = input.next();
+                    String addressBookName = input.next();
 
-                    add_Book.updateContact(companyName, personInfoDict);
+                    add_Book.updateContact(addressBookName, personInfoDict);
                     break;
                 case DELETE:
+                    System.out.print("\n" + "Enter the name of the Address Book that you want to delete: ");
+                    String deleteAddressBookName = input.next();
+                    add_Book.deleteContact(deleteAddressBookName, personInfoDict);
                     break;
                 case DISPLAY:
                     System.out.println("\n" + "Display all contacts in the Address Book");

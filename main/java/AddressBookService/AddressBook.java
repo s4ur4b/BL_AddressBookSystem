@@ -20,18 +20,23 @@ public class AddressBook implements AddressBookInterface {
     }
 
     @Override
-    public void updateContact(String replacedContact, Hashtable<String, ArrayList<PersonInfo>> personInfoDict) {
-        addressBookRepository.updateContact(replacedContact,personInfoDict);
+    public void updateContact(String addressBookName, Hashtable<String, ArrayList<PersonInfo>> personInfoDict) {
+        addressBookRepository.updateContact(addressBookName,personInfoDict);
     }
 
     @Override
-    public boolean findContact(String contact, Hashtable<String, ArrayList<PersonInfo>> personInfoDict) {
-        return addressBookRepository.findContact(contact,personInfoDict);
+    public boolean findContact(String addressBookName, Hashtable<String, ArrayList<PersonInfo>> personInfoDict) {
+        return addressBookRepository.findContact(addressBookName,personInfoDict);
     }
 
     @Override
-    public void editContactDetails(String replacedContact, Hashtable<String, ArrayList<PersonInfo>> personInfoDict) {
-        addressBookRepository.editContactDetails(replacedContact,personInfoDict);
+    public void editContactDetails(String addressBookName, Hashtable<String, ArrayList<PersonInfo>> personInfoDict) {
+        addressBookRepository.editContactDetails(addressBookName,personInfoDict);
+    }
+
+    @Override
+    public void deleteContact(String deletedName, Hashtable<String, ArrayList<PersonInfo>> personInfoDict) {
+        addressBookRepository.deleteContact(deletedName,personInfoDict);
     }
 
 
