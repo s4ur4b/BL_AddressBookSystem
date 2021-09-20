@@ -237,10 +237,42 @@ public class AddressBookRepository implements AddressBookInterface {
 
     @Override
     public void sortPerson() {
-        personInfoDict.keySet().forEach(entry -> {
-            List<PersonInfo> collect = personInfoDict.get(entry).stream().sorted(Comparator.comparing(p -> p.getFirst_name())).collect(Collectors.toList());
-            System.out.println(collect);
-        });
+        System.out.println("Press 1 to sort person by First Name");
+        System.out.println("Press 2 to sort person by City");
+        System.out.println("Press 3 to sort person by State");
+        System.out.println("Press 4 to sort person by Zip");
+        int choice = input.nextInt();
+
+        switch(choice) {
+            case 1:
+                System.out.println("\nSorting Address Book based on First Name");
+                personInfoDict.keySet().forEach(entry -> {
+                    List<PersonInfo> data = personInfoDict.get(entry).stream().sorted(Comparator.comparing(p -> p.getFirst_name())).collect(Collectors.toList());
+                    System.out.println(data);
+                });
+                break;
+            case 2:
+                System.out.println("\nSorting Address Book based on City");
+                personInfoDict.keySet().forEach(entry -> {
+                    List<PersonInfo> data = personInfoDict.get(entry).stream().sorted(Comparator.comparing(p -> p.getCity())).collect(Collectors.toList());
+                    System.out.println(data);
+                });
+                break;
+            case 3:
+                System.out.println("\nSorting Address Book based on State");
+                personInfoDict.keySet().forEach(entry -> {
+                    List<PersonInfo> data = personInfoDict.get(entry).stream().sorted(Comparator.comparing(p -> p.getState())).collect(Collectors.toList());
+                    System.out.println(data);
+                });
+                break;
+            case 4:
+                System.out.println("\nSorting Address Book based on Zip");
+                personInfoDict.keySet().forEach(entry -> {
+                    List<PersonInfo> data = personInfoDict.get(entry).stream().sorted(Comparator.comparing(p -> p.getZip())).collect(Collectors.toList());
+                    System.out.println(data);
+                });
+                break;
+        }
     }
 
 }
