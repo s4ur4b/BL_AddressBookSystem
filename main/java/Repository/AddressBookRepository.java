@@ -15,6 +15,7 @@ public class AddressBookRepository implements AddressBookInterface {
     PersonInfo personInfo = null;
     ArrayList<PersonInfo> pList = new ArrayList<>();
 
+    //Adds contact into an AddressBook
     @Override
     public Hashtable<String, ArrayList<PersonInfo>> insertContactDetails() {
         boolean found = false;
@@ -68,6 +69,7 @@ public class AddressBookRepository implements AddressBookInterface {
                 return personInfoDict;
     }
 
+    //Display all contacts in the AddressBook
     @Override
     public void displayCompanyContacts(Hashtable<String, ArrayList<PersonInfo>> personInfoDict) {
             personInfoDict.keySet().forEach(entry -> {
