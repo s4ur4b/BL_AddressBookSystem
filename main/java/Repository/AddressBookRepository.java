@@ -78,5 +78,80 @@ public class AddressBookRepository implements AddressBookInterface {
 
     }
 
+    @Override
+    public void updateContact(String addressBookName, Hashtable<String, ArrayList<PersonInfo>> personInfoDict) {
+        boolean flag = findContact(addressBookName, personInfoDict);
+        if (flag == true) {
+            editContactDetails(addressBookName, personInfoDict);
+        } else {
+            System.out.println("\nNo such Address Book found to update!\n");
+        }
+    }
+
+    @Override
+    public boolean findContact(String addressBookName, Hashtable<String, ArrayList<PersonInfo>> personInfoDict) {
+        for (int i = 0; i < personInfoDict.size(); i++) {
+            if (personInfoDict.containsKey(addressBookName))
+                return true;
+        }
+        return false;
+    }
+
+    @Override
+    public void editContactDetails(String addressBookName, Hashtable<String, ArrayList<PersonInfo>> personInfoDict) {
+        System.out.print("\nEnter the first name you want to edit the details for : ");
+        String fName = input.next();
+
+        ArrayList<PersonInfo> value = personInfoDict.get(addressBookName);
+        for (int j = 0; j < value.size(); j++) {
+            if(value.get(j).getFirst_name().equals(fName)) {
+                System.out.println("Choose your edit option: ");
+                System.out.println("1. Last Name");
+                System.out.println("2. Address");
+                System.out.println("3. City");
+                System.out.println("4. State");
+                System.out.println("5. Zip");
+                System.out.println("6. Phone Number");
+                System.out.println("7. Email");
+                int editOption = input.nextInt();
+
+                switch (editOption) {
+                    case 1:
+                        System.out.println("Enter new Last Name: ");
+                        value.get(j).setLast_name(input.next().toString());
+                        break;
+                    case 2:
+                        System.out.println("Enter new Address: ");
+                        value.get(j).setAddress(input.next().toString());
+                        break;
+                    case 3:
+                        System.out.println("Enter new City: ");
+                        value.get(j).setCity(input.next().toString());
+                        break;
+                    case 4:
+                        System.out.println("Enter new State: ");
+                        value.get(j).setState(input.next().toString());
+                        break;
+                    case 5:
+                        System.out.println("Enter new Zip: ");
+                        value.get(j).setZip(input.nextInt());
+                        break;
+                    case 6:
+                        System.out.println("Enter new Phone Number: ");
+                        value.get(j).setPhone_number(input.next().toString());
+                        break;
+                    case 7:
+                        System.out.println("Enter new Email: ");
+                        value.get(j).setEmail(input.next().toString());
+                        break;
+                }
+                System.out.println("\nUpdated successfully!\n");
+                break;
+            }
+            else
+                System.out.println("\nNo First Name Found!\n");
+        }
+    }
+
 
 }
