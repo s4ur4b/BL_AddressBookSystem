@@ -2,6 +2,7 @@ package AddressBookController;
 
 import AddressBookModel.PersonInfo;
 import AddressBookService.AddressBook;
+import Files.ReadWriteOperations;
 import Utility.UserInputOutput;
 
 import java.util.ArrayList;
@@ -22,6 +23,9 @@ public class AddressBookSystem {
 
     public static void main(String[] args) {
         Hashtable<String, ArrayList<PersonInfo>> personInfoDict = new Hashtable<>();
+
+        ReadWriteOperations readWriteObj = new ReadWriteOperations();
+
         boolean flag = true;
         int option;
         while (flag) {
@@ -30,7 +34,7 @@ public class AddressBookSystem {
                 case ADD:
                     System.out.println("\n" + "Add a new Address Book");
                     personInfoDict = add_Book.insertContactDetails();
-                    //System.out.println(personInfoDict + "\n");
+                    readWriteObj.writeInAddressBook(personInfoDict);
                     break;
                 case EDIT:
                     System.out.print("\n" + "Enter the name of the Address Book that you want to replace: ");
@@ -46,6 +50,7 @@ public class AddressBookSystem {
                 case DISPLAY:
                     System.out.println("\n" + "Display all contacts in the Address Book");
                     add_Book.displayCompanyContacts(personInfoDict);
+                    readWriteObj.readFromAddressBook();
                     break;
                 case SEARCH_CITY:
                     System.out.println("\n" + "Search Address Book based on City");
