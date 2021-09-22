@@ -2,6 +2,7 @@ package AddressBookController;
 
 import AddressBookModel.PersonInfo;
 import AddressBookService.AddressBook;
+import Files.ReadWriteCSVFile;
 import Files.ReadWriteOperations;
 import Utility.UserInputOutput;
 
@@ -25,6 +26,7 @@ public class AddressBookSystem {
         Hashtable<String, ArrayList<PersonInfo>> personInfoDict = new Hashtable<>();
 
         ReadWriteOperations readWriteObj = new ReadWriteOperations();
+        ReadWriteCSVFile csvObj = new ReadWriteCSVFile();
 
         boolean flag = true;
         int option;
@@ -35,6 +37,7 @@ public class AddressBookSystem {
                     System.out.println("\n" + "Add a new Address Book");
                     personInfoDict = add_Book.insertContactDetails();
                     readWriteObj.writeInAddressBook(personInfoDict);
+                    csvObj.writeCSVFile(personInfoDict);
                     break;
                 case EDIT:
                     System.out.print("\n" + "Enter the name of the Address Book that you want to replace: ");
@@ -51,6 +54,7 @@ public class AddressBookSystem {
                     System.out.println("\n" + "Display all contacts in the Address Book");
                     add_Book.displayCompanyContacts(personInfoDict);
                     readWriteObj.readFromAddressBook();
+                    csvObj.readCSVFile();
                     break;
                 case SEARCH_CITY:
                     System.out.println("\n" + "Search Address Book based on City");
